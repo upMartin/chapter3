@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smart.dao.UserDao">
+    <resultMap id="BaseResultMap" type="com.smart.domain.User">
+        <id column="user_id" property="userId"/>
+        <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="credits" jdbcType="INTEGER" property="credits"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="last_visit" jdbcType="DATE" property="lastVisit"/>
+        <result column="last_ip" jdbcType="DATE" property="lastIp"/>
+    </resultMap>
+    <select id="getMatchCount" resultType="java.lang.Integer">
+        select * from t_user where user_name = #{userName} and password = #{password}
+    </select>
+
+    <select id="findUserByUserName" resultMap="BaseResultMap">
+        select * from t_user where user_name = #{userName}
+    </select>
+</mapper>
